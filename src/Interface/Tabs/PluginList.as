@@ -22,6 +22,8 @@ class PluginListTab : Tab
 		tags.InsertLast("Trackmania");
 #elif TURBO
 		tags.InsertLast("Turbo");
+#elif FOREVER
+		tags.InsertLast("Forever");
 #else
 		tags.InsertLast("Maniaplanet");
 #endif
