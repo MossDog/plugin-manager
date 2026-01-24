@@ -181,7 +181,7 @@ class PluginInfo
 
 	void LoadChangelog()
 	{
-		@m_changelogRequest = API::Get("plugin/" + m_siteID + "/versions");
+		@m_changelogRequest = API::Get("/plugin/" + m_siteID + "/versions");
 	}
 
 	void CheckChangelog()

@@ -24,16 +24,11 @@ void PluginInstallAsync(int siteID, const string &in identifier, const Version &
 
 	string savePath = IO::FromDataFolder("Plugins/" + identifier + ".op");
 
-	// Start downloading the plugin to disk
+	// Download the plugin to disk
 	auto req = Net::HttpRequest();
 	req.Method = Net::HttpMethod::Get;
-	req.Url = Setting_BaseURL + "plugin/" + siteID + "/download";
-	req.StartToFile(savePath);
-
-	// Wait for the download to finish
-	while (!req.Finished()) {
-		yield();
-	}
+	req.Url = Setting_ApiBaseUrl + "/plugin/" + siteID + "/download";
+	await(req.StartToFile(savePath));
 
 	if (load) {
 		// Load the plugin

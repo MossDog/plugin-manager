@@ -3,18 +3,21 @@ class CachedImage
 	string m_url;
 	UI::Texture@ m_texture;
 
+	CachedImage(const string &in url)
+	{
+		m_url = url;
+	}
+
 	void DownloadFromURLAsync()
 	{
+		if (Setting_VerboseLog) {
+			trace("Download image: " + m_url);
+		}
+
 		auto req = Net::HttpRequest();
 		req.Method = Net::HttpMethod::Get;
 		req.Url = m_url;
-		if (Setting_VerboseLog) {
-			trace("Download image: " + req.Url);
-		}
-		req.Start();
-		while (!req.Finished()) {
-			yield();
-		}
+		await(req.Start());
 		@m_texture = UI::LoadTexture(req.Buffer());
 		if (m_texture.GetSize().x == 0) {
 			@m_texture = null;
@@ -26,25 +29,24 @@ namespace Images
 {
 	dictionary g_cachedImages;
 
-	CachedImage@ FindExisting(const string &in path)
+	CachedImage@ FindExisting(const string &in url)
 	{
 		CachedImage@ ret = null;
-		g_cachedImages.Get(path, @ret);
+		g_cachedImages.Get(url, @ret);
 		return ret;
 	}
 
-	CachedImage@ CachedFromURL(const string &in path)
+	CachedImage@ CachedFromURL(const string &in url)
 	{
 		// Return existing image if it already exists
-		auto existing = FindExisting(path);
+		auto existing = FindExisting(url);
 		if (existing !is null) {
 			return existing;
 		}
 
 		// Create a new cached image object and remember it for future reference
-		auto ret = CachedImage();
-		ret.m_url = Setting_BaseURL + path;
-		g_cachedImages.Set(path, @ret);
+		auto ret = CachedImage(url);
+		g_cachedImages.Set(url, @ret);
 
 		// Begin downloading
 		startnew(CoroutineFunc(ret.DownloadFromURLAsync));

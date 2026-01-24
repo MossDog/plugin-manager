@@ -2,13 +2,13 @@ namespace API
 {
 	Net::HttpRequest@ Get(const string &in path)
 	{
-		if (!Setting_BaseURL.EndsWith("/")) {
-			Setting_BaseURL += "/";
+		if (!path.StartsWith("/")) {
+			throw("API request path does not start with a slash!");
 		}
 
 		auto ret = Net::HttpRequest();
 		ret.Method = Net::HttpMethod::Get;
-		ret.Url = Setting_BaseURL + "api/" + path;
+		ret.Url = Setting_ApiBaseUrl + path;
 		if (Setting_VerboseLog) {
 			trace("API request: " + ret.Url);
 		}

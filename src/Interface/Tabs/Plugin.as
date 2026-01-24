@@ -36,8 +36,8 @@ class PluginTab : Tab
 		m_error = false;
 		m_errorMessage = "";
 
-		@m_requestMain = API::Get("plugin/" + siteID);
-		@m_requestChangelog = API::Get("plugin/" + siteID + "/versions");
+		@m_requestMain = API::Get("/plugin/" + siteID);
+		@m_requestChangelog = API::Get("/plugin/" + siteID + "/versions");
 	}
 
 	void CheckRequestMain()
@@ -259,7 +259,7 @@ class PluginTab : Tab
 		}
 
 		if (UI::Button(Icons::Link + " Open on website")) {
-			OpenBrowserURL(Setting_BaseURL + m_plugin.m_url);
+			OpenBrowserURL(m_plugin.m_url);
 		}
 
 		if (m_plugin.m_sourceURL != "" && UI::Button(Icons::Code + " Source code")) {

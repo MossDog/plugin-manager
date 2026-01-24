@@ -56,7 +56,7 @@ void CheckForUpdatesAsync()
 
 	// Request version numbers from server
 	ids = ids.SubStr(0, ids.Length - 1);
-	auto js = API::GetAsync("versions?ids=" + ids);
+	auto js = API::GetAsync("/versions?ids=" + ids);
 	if (js.GetType() == Json::Type::Object) {
 		error("Unable to check for updates: \"" + string(js["error"]) + "\"");
 		return;
