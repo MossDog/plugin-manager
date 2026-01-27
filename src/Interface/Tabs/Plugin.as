@@ -253,7 +253,7 @@ class PluginTab : Tab
 		if (m_plugin.m_hasGenAI) {
 			Controls::BeginFrame("\\$ff7" + Icons::ExclamationCircle + "\\$z This plugin was developed using generative AI.");
 			if (m_plugin.m_genAIDescription != "") {
-				UI::Text("From the developer: " + m_plugin.m_genAIDescription);
+				UI::TextWrapped("From the developer: " + m_plugin.m_genAIDescription);
 			}
 			Controls::EndFrame();
 		}
