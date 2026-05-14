@@ -7,3 +7,4 @@ essential = true
 [script]
 dependencies = [ "Controls" ]
 timeout = 0
+controls_other_plugins = true
