@@ -70,15 +70,15 @@ namespace Controls
 			UI::SetItemTooltip("This plugin is been marked as broken! It may no longer be working as intended, might be broken, or might be very unstable.");
 		}
 
-		// Remember where our text will go
-		vec2 textPos = UI::GetCursorPos();
-
 		UI::Text(plugin.m_name);
 		UI::TextDisabled("By " + plugin.GetAuthorNames());
 
-		UI::SetCursorPos(textPos + vec2(width - 40 * scale, 5 * scale));
 		if (UI::Button("Info")) {
 			g_window.AddTab(PluginTab(plugin.m_siteID), true);
+		}
+		if (plugin.m_isInstalled) {
+			UI::SameLine();
+			PluginSettingsButton(plugin);
 		}
 
 		UI::PopID();

@@ -244,6 +244,9 @@ class PluginTab : Tab
 		}
 
 		RenderUpdatebuttons();
+		if (m_plugin.m_isInstalled) {
+			Controls::PluginSettingsButton(m_plugin);
+		}
 
 		UI::Text("Filename: \\$f77" + m_plugin.m_id + ".op");
 		UI::Text("Downloads: \\$f77" + m_plugin.m_downloads);
