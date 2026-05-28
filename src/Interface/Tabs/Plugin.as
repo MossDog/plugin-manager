@@ -244,6 +244,7 @@ class PluginTab : Tab
 		}
 
 		RenderUpdatebuttons();
+
 		if (m_plugin.m_isInstalled && UI::Button(Icons::Cogs + " Settings")) {
 			auto installedPlugin = m_plugin.GetInstalledPlugin();
 			if (installedPlugin !is null) {
