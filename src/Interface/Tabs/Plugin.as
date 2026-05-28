@@ -244,9 +244,11 @@ class PluginTab : Tab
 		}
 
 		RenderUpdatebuttons();
-		auto installedPlugin = m_plugin.GetInstalledPlugin();
-		if (installedPlugin !is null && UI::Button(Icons::Cogs + " Settings")) {
-			Meta::OpenSettings(installedPlugin);
+		if (m_plugin.m_isInstalled && UI::Button(Icons::Cogs + " Settings")) {
+			auto installedPlugin = m_plugin.GetInstalledPlugin();
+			if (installedPlugin !is null) {
+				Meta::OpenSettings(installedPlugin);
+			}
 		}
 
 		UI::Text("Filename: \\$f77" + m_plugin.m_id + ".op");
