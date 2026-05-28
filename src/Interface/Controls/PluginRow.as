@@ -34,10 +34,6 @@ namespace Controls
 		if (UI::Button(Icons::Eye + " Info")) {
 			g_window.AddTab(PluginTab(plugin.m_siteID), true);
 		}
-		if (plugin.m_isInstalled) {
-			UI::SameLine();
-			PluginSettingsButton(plugin);
-		}
 
 		UI::PopID();
 	}

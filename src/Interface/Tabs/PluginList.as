@@ -176,7 +176,7 @@ class PluginListTab : Tab
 			if (UI::BeginTable("Plugins", 3, UI::TableFlags::RowBg)) {
 				UI::TableSetupColumn("##Image", UI::TableColumnFlags::WidthFixed, 95 * UI::GetScale());
 				UI::TableSetupColumn("##Plugin");
-				UI::TableSetupColumn("##Actions", UI::TableColumnFlags::WidthFixed, 175 * UI::GetScale());
+				UI::TableSetupColumn("##Actions", UI::TableColumnFlags::WidthFixed, 70 * UI::GetScale());
 				for (uint i = 0; i < m_plugins.Length; i++) {
 					Controls::PluginRow(m_plugins[i]);
 				}
