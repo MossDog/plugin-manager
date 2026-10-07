@@ -245,6 +245,13 @@ class PluginTab : Tab
 
 		RenderUpdatebuttons();
 
+		if (m_plugin.m_isInstalled && UI::Button(Icons::Cogs + " Settings")) {
+			auto installedPlugin = m_plugin.GetInstalledPlugin();
+			if (installedPlugin !is null) {
+				Meta::OpenSettings(installedPlugin);
+			}
+		}
+
 		UI::Text("Filename: \\$f77" + m_plugin.m_id + ".op");
 		UI::Text("Downloads: \\$f77" + m_plugin.m_downloads);
 		UI::Text("Last updated: \\$f77" + Time::FormatString("%F %R", m_plugin.m_updateTime));
